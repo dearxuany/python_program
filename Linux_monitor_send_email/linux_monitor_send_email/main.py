@@ -14,8 +14,9 @@ def main():
     # content = str(monitor_data_collect.collect_monitor_data())
     # send_email.send_contents(email_user,email_password,mail_host,content,recipients)
 
+    # 以下三句应用模板时使用
     data = monitor_data_collect.collect_monitor_data()
-    content = data_format.render('monitor.html',**data)
+    content = data_format.render('monitor.html',**data) # 需要注意html模板所在的路径最好填绝对路径
     send_email.send_contents(email_user,email_password,mail_host,content,recipients)
 
 
