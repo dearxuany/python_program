@@ -6,7 +6,7 @@ import data_format
 
 def main():
     email_user = 'sharonyunxuan@sina.com'  # 发件邮箱地址
-    email_password ='DEARxuany226' # 发件邮箱密码
+    email_password ='****' # 发件邮箱密码
     mail_host = 'smtp.sina.com'  # 邮件服务器
     recipients = ['sharonyunxuan@sina.com']  # 收件邮箱地址
     
