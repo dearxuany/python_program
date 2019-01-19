@@ -64,6 +64,10 @@ $ pip3 install -r requirements.txt
 python3 的路径最好写绝对路径，main.py 的路径必须写绝对路径。</br>
 此处为测试设置了10分钟发送一次，可按需调整。</br>
 ```
+# 查看 python3 路径
+$ which python3
+/usr/bin/python3
+
 # 设置定时任务
 $ crontab -e
 crontab: installing new crontab
