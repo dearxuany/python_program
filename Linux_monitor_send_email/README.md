@@ -26,4 +26,9 @@ Linux_monitor_send_email
 目录 ./linux_monitor_send_email 中存放项目代码，requirements.txt 标有本项目的外部 Python 包列表，README.md 为项目使用说明。
 * main.py</br>
 main.py 为本项目程序入口，该模块主要负责调用性能数据采集模块 monitor_data_collect.py 采集linux的实时性能数据，之后将采集模块的返回值传送给模板渲染模块 data_format.py 进行数据的格式调整，最后将格式调整后的数据传送给邮件发送模块 send_email.py 来进行邮件的发送。另外，该模块还承担邮件服务器 host 的设置、发件邮箱地址与密码的输入设置、收件邮箱地址的设置任务。
-
+* monitor_data_collect.py </br>
+monitor_data_collect.py 为本项目的系统性能数据采集模块。该模块负责调用 python 的 psutil 模块实时采集 linux 系统的性能数据，其中包括CPU个数、CPU使用率、内存总量、内存利用率、内存已用空间、内存可用空间、磁盘总量、磁盘利用率、磁盘已用空间、磁盘可用空间、开机时间，调用 socket 模块获得当前主机名，调用 time 模块获得当前采集时间。采集完成后，该模块会将性能数据保存在一个字典中并返回给 main.py。
+* data_format.py </br>
+data_format.py 为本项目的模板渲染模块，主要调用了 python 中的 jinja2 模块，通过 jinja2 模块使用 monitor.html 中格式来渲染性能数据，该模块负责对性能数据进行格式调整以达到便于人员阅读的效果。
+* send_email.py </br>
+send_email.py 为本项目的邮件发送模块，该模块主要调用了 python 的 yagmail 模块，负责将调整好格式的性能数据发送到指定邮箱之中。该模块还调用了 python 的 time 模块自动将发邮件的时间信息包含在邮件的标题中，便于阅读分类的同时防止被邮件服务商识别为垃圾邮件。
