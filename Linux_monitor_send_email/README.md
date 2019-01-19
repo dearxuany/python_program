@@ -32,3 +32,54 @@ monitor_data_collect.py 为本项目的系统性能数据采集模块。该模�
 data_format.py 为本项目的模板渲染模块，主要调用了 python 中的 jinja2 模块，通过 jinja2 模块使用 monitor.html 中格式来渲染性能数据，该模块负责对性能数据进行格式调整以达到便于人员阅读的效果。
 * send_email.py </br>
 send_email.py 为本项目的邮件发送模块，该模块主要调用了 python 的 yagmail 模块，负责将调整好格式的性能数据发送到指定邮箱之中。该模块还调用了 python 的 time 模块自动将发邮件的时间信息包含在邮件的标题中，便于阅读分类的同时防止被邮件服务商识别为垃圾邮件。
+
+## 项目软件环境及使用方法
+项目软件环境：linux 和 python3</br>
+其中 linux 涉及定时任务 crontab，python3 涉及到包管理工具 pip3</br>
+### 项目使用方法
+下载本项目到任意 linux 系统目录下，使用 pwd 命令获取项目代码所在目录
+```
+$ pwd
+/home/sunnylinux/useful_script/python3_script/Linux_monitor_send_email/linux_monitor_send_email
+```
+对 main.py 进行修改，主要修改发件邮箱和密码、发件邮箱的邮件服务器host（到官网上找）、收件箱地址
+```
+# 需要修改为自用的邮箱信息
+email_user = 'username@example.com'  # 发件邮箱地址
+email_password ='*****' # 发件邮箱密码
+mail_host = 'smtp.example.com'  # 邮件服务器
+recipients = ['username1@example.com','username2@example.com']  # 收件邮箱地址
+```
+对 main.py 还需修改 html 模板的路径，要写为绝对路径（pwd 获取），不然使用crontab的时候会找不到该渲染模板
+```
+# 需要修改 html 模板的路径
+content = data_format.render('/home/sunnylinux/useful_script/python3_script/Linux_monitor_send_email/linux_monitor_send_email/monitor.html',**data)
+```
+安装项目依赖的 python 包
+```
+$ pip3 install -r requirements.txt
+```
+在 linux 中添加执行本项目的 crontab 定时任务</br>
+注意：
+python3 的路径最好写绝对路径，main.py 的路径必须写绝对路径。</br>
+此处为测试设置了10分钟发送一次，可按需调整。</br>
+```
+# 设置定时任务
+$ crontab -e
+crontab: installing new crontab
+
+# 查询当前用户定时任务
+$ crontab -l
+*/10 * * * *  /usr/bin/python3 /home/sunnylinux/useful_script/python3_script/Linux_monitor_send_email/linux_monitor_send_email/main.py
+```
+查看一下执行结果
+```
+$ sudo tail -f /var/log/cron
+Jan 20 04:50:01 centOSlearning CROND[2119]: (sunnylinux) CMD (/usr/bin/python3 /home/sunnylinux/useful_script/python3_script/Linux_monitor_send_email/linux_monitor_send_email/main.py)
+Jan 20 05:00:01 centOSlearning CROND[2155]: (sunnylinux) CMD (/usr/bin/python3 /home/sunnylinux/useful_script/python3_script/Linux_monitor_send_email/linux_monitor_send_email/main.py)
+```
+可以看到该脚本已经成功定时执行了两次，邮箱也收到了每次执行对应的邮件：</br>
+</br>
+![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Python_note_images/python_linux_monitor_send_mail.png)
+
+
