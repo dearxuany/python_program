@@ -60,7 +60,7 @@ content = data_format.render('/home/sunnylinux/useful_script/python3_script/Linu
 $ pip3 install -r requirements.txt
 ```
 在 linux 中添加执行本项目的 crontab 定时任务</br>
-注意：
+注意：</br>
 python3 的路径最好写绝对路径，main.py 的路径必须写绝对路径。</br>
 此处为测试设置了10分钟发送一次，可按需调整。</br>
 ```
