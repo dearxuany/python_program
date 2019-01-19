@@ -10,7 +10,20 @@
 * 使用 Python3 中的 yagmail 邮件模块来实现性能数据发送到邮箱的功能，除使用公司内部企业邮箱外还可使用现有的邮箱服务提供商的邮箱且易于更换，支持多个收件人同时接收数据；
 * 项目整体使用 Python 编写，比 SHELL 更加简短，可读性强，更加易于后期维护。
 
-## 项目结构
+## 项目结构与功能说明
 ```
+Linux_monitor_send_email
+   ├── linux_monitor_send_email
+   │   ├── data_format.py
+   │   ├── __init__.py
+   │   ├── main.py
+   │   ├── monitor_data_collect.py
+   │   ├── monitor.html
+   │   └── send_email.py
+   ├── README.md
+   └── requirements.txt
+```
+目录 ./linux_monitor_send_email 中存放项目代码，requirements.txt 标有本项目的外部 Python 包列表，README.md 为项目使用说明。
+* main.py</br>
+main.py 为本项目程序入口，该模块主要负责调用性能数据采集模块 monitor_data_collect.py 采集linux的实时性能数据，之后将采集模块的返回值传送给模板渲染模块 data_format.py 进行数据的格式调整，最后将格式调整后的数据传送给邮件发送模块 send_email.py 来进行邮件的发送。另外，该模块还承担邮件服务器 host 的设置、发件邮箱地址与密码的输入设置、收件邮箱地址的设置任务。
 
-```
