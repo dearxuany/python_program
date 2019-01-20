@@ -28,7 +28,7 @@ def get_memory_info():
     mem_used = change_measure_unit(psutil.virtual_memory().total*mem_percent/100)
     mem_available = change_measure_unit(psutil.virtual_memory().available)
     return dict(mem_total=mem_total,mem_percent=mem_percent,
-                men_used=mem_used,mem_available=mem_available) 
+                mem_used=mem_used,mem_available=mem_available) 
 
 def get_disk_info():
     disk_usage = psutil.disk_usage('/')
