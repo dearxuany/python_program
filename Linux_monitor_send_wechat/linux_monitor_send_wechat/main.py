@@ -1,13 +1,7 @@
 #! /usr/bin/env python3
 
 import monitor_data_collect
-from wxpy import *
-
-
-def send_wechat(content,nickname,sex,city):
-    bot = Bot(console_qr=True, cache_path=True)
-    data_receiver = bot.friends().search(nickname,sex=sex,city=city)[0]
-    data_receiver.send(content)
+import send_wechat
 
 def main():
     data =  monitor_data_collect.collect_monitor_data()
@@ -26,12 +20,7 @@ def main():
               +'磁盘已用空间：{}\n'.format(data['disk_used'])\
               +'磁盘可用空间：{}\n'.format(data['disk_available'])
 
-    # 微信发送对象
-    nickname = 'Xuan'
-    sex = FEMALE
-    city = '广州'
-
-    send_wechat(content,nickname,sex,city)
+    send_wechat.send_massage(content)
 
 if __name__ == '__main__':
     main()
