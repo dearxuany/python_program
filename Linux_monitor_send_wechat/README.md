@@ -17,6 +17,19 @@ wxpy 模块提供了一个缓存功能以解决一段时间内需要重复扫码
 * 从数据传入到微信发送信息到用户或微信群，整个过程仅依靠 linux 终端完成，不需要额外的图形化界面，简化了从 linux 提取信息再发送到微信的各种繁琐步骤；
 * 程序使用交互形式编写，对 wxpy 微信个人 API 模块进行了封装，不需要每次使用都修改代码，只需在命令行界面完成发送对象的选取即可实现发送微信的功能，提高了程序的易用性。
 ## 项目结构与功能说明
-
+```
+├── linux_monitor_send_wechat
+│   ├── __init__.py
+│   ├── main.py
+│   ├── monitor_data_collect.py
+│   └── send_wechat.py
+├── README.md
+└── requirements.txt
+```
+目录 ./linux_monitor_send_wechat 中存放项目代码，requirements.txt 标有本项目的外部 Python 包列表，README.md 为项目使用说明。
+* main.py
+main.py 为本项目程序入口，该模块主要负责调用性能数据采集模块 monitor_data_collect.py 采集linux的实时性能数据，然后根据微信的显示特性对数据进行一些格式调整，增加可读性。最后，调用基于 wxpy 的 send_wechat.py 让用户登录微信、选定发送对象（微信个人用户或微信群）、发送信息到指定接收对象。
+* monitor_data_collect.py 
+monitor_data_collect.py 为本项目的系统性能数据采集模块。该模块负责调用 python 的 psutil 模块实时采集 linux 系统的性能数据，其中包括CPU个数、CPU使用率、内存总量、内存利用率、内存已用空间、内存可用空间、磁盘总量、磁盘利用率、磁盘已用空间、磁盘可用空间、开机时间，调用 socket 模块获得当前主机名，调用 time 模块获得当前采集时间。采集完成后，该模块会将性能数据保存在一个字典中并返回给 main.py。
 
 
