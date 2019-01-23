@@ -10,14 +10,14 @@ def who_to_send():
         sex = str(input('Place input the wechat user gender (MALE/FEMALE): '))
         city = str(input('Place input the city of wechat user (example:广州):'))
         if nickname == '' or city == '':
-            print('nickname and city can\'t be null!')
+            print('Nickname and city can\'t be null!')
             return who_to_send()
         else :
             usrinfo.update(dict(who=who,nickname=nickname,sex=sex,city=city))
     elif who == 'g':
         groupname = str(input('Place input the groupname of the wechat group: '))
         if groupname == '':
-            print('groupname can\'t be null!')
+            print('Groupname can\'t be null!')
             return who_to_send()
         else :
             usrinfo.update(dict(who=who,groupname=groupname))
@@ -39,13 +39,13 @@ def send_massage(content):
             data_user = bot.friends().search(sendto['nickname'],sex=sendto['sex'],city=sendto['city'])[0]
         # 发送信息给查找到的用户
         data_user.send(content)
-        print('massage send to {}: OK!'.format(data_user))
+        print('Massage send to {}: OK!'.format(data_user))
         return 
     elif sendto['who'] == 'g':
         # 查找并发信息给单个微信群
         data_group = ensure_one(bot.groups().search(sendto['groupname']))
         data_group.send(content)
-        print('massate send to {}: OK!'.format(data_group))
+        print('Massage send to {}: OK!'.format(data_group))
         return
 
 if __name__ == '__main__':
