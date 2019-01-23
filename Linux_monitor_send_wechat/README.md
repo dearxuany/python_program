@@ -18,6 +18,7 @@ wxpy 模块提供了一个缓存功能以解决一段时间内需要重复扫码
 * 程序使用交互形式编写，对 wxpy 微信个人 API 模块进行了封装，不需要每次使用都修改代码，只需在命令行界面完成发送对象的选取即可实现发送微信的功能，提高了程序的易用性。
 ## 项目结构与功能说明
 ```
+Linux_monitor_send_wechat
 ├── linux_monitor_send_wechat
 │   ├── __init__.py
 │   ├── main.py
