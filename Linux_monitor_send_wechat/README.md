@@ -47,7 +47,7 @@ $ pip3 install -r requirements.txt
 $ python3 main.py
 ```
 程序会要求扫描二维码登录微信，如下图这个样子，用手机微信扫描二维码并确认登录</br>
-![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Python_note_images/linux_send_wechat_QR.png)
+![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Python_note_images/linux_send_wechat_QR.png)</br>
 注意：</br>
 第一次登录过后，程序会生成一个 wxpy.pkl 文件，之后在一段时间内重复执行程序则不需要再重复扫码登录的步骤，程序自动登录微信。</br>
 如果不需要自动登录，则可直接删除 wxpy.pkl 文件，重新启动程序后则会要求重新登录。</br>
