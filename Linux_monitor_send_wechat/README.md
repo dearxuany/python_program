@@ -75,6 +75,7 @@ Massage send to <Group: testing>: OK!
 ![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Python_note_images/linux_send_wechat.jpg)
 
 ## send_wechat.py 的单独使用
+### 发送文字
 在 send_wechat.py 所在目录中，启动 python3 解释器，导入 send_wechat
 ```
 >>> import send_wechat
@@ -85,3 +86,5 @@ Massage send to <Group: testing>: OK!
 ```
 如果想在其他目录中也使用本模块，则可手动将本模块放置到 python3 解释器查找模块的默认路径中，
 详情：[Python 模块](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/python_note/Python%20%E6%A8%A1%E5%9D%97.MD)
+### 执行SHELL命令并将输出以字符串形式发送到微信
+
