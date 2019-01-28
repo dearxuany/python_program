@@ -105,6 +105,6 @@ Do you want to send massage to a wechat user or a wechat group?(u/g)g
 Place input the groupname of the wechat group: testing
 Massage send to <Group: testing>: OK!
 ```
-![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Python_note_images/linux_send_wechat.png)
+![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Python_note_images/python_linux_send_wechat.png)
 
 
