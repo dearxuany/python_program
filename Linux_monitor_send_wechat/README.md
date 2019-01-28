@@ -87,8 +87,15 @@ Place input the groupname of the wechat group: testing
 Massage send to <Group: testing>: OK!
 ```
 ### 执行SHELL命令并将输出以字符串形式发送到微信
+SHELL命令的执行和输出，主要使用的是os模块中的 popen() 函数来执行SHELL命令，然后用方法 read()输出为字符串。</br>
+```
+>>> import os
+>>> os.popen('uname -r')
+<os._wrap_close object at 0xb62d8b2c>
+>>> os.popen('uname -r').read()
+'3.10.0-862.2.3.el7.centos.plus.i686\n'
+```
 在 send_wechat.py 所在目录中，启动 python3 解释器，导入 send_wechat 和 python 自带的 os 模块。</br>
-主要使用的是os模块中的 popen() 函数来执行SHELL命令，然后用方法 read()输出为字符串。</br>
 ```
 >>> import os
 >>> import send_wechat
