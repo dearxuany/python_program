@@ -74,5 +74,5 @@ $ sudo crontab -l
 注意：设置 crontab 必须要 sudo，这样才能在自启过程中使用root权限，不sudo会设置在一般用户名下
 ```
 $ sudo tail -f /var/log/cron
-Jan 30 02:00:01 centOSlearning CROND[5535]: (root) CMD (/usr/local/python3 /home/sunnylinux/usef       ul_script/python3_script/nginx_log_backup/nginx_log_backup.py )
+Jan 30 02:00:01 centOSlearning CROND[5535]: (root) CMD (/usr/local/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py )
 ```
