@@ -1,7 +1,7 @@
 # python_program
-* python3 实现定时监控 linux 系统性能并发送邮件通知</br>
+* Python3 实现定时监控 linux 系统性能并发送邮件通知</br>
 https://github.com/dearxuany/python_program/tree/master/Linux_monitor_send_email </br>
-本项目主要使用 Python3 的三个开源模块 psutil、jinja2、yagmail 并配合 linux 系统自带的 crontab 定时任务，来实现对 linux 系统性能数据的定时采集、数据格式调整、自动发送到指定邮箱的功能，采集内容包括：开机时间，当前主机名、当前采集时间、CPU个数、CPU使用率、内存总量、内存利用率、内存已用空间、内存可用空间、磁盘总量、磁盘利用率、磁盘已用空间、磁盘可用空间。</br>
+本项目主要使用 Python3 的三个开源模块 psutil、jinja2、yagmail 并配合 linux 系统自带的 crontab 定时任务，来实现对 linux 系统性能数据的定时采集、数据格式调整、自动发送到指定邮箱的功能，采集内容包括：开机时间，当前主机名、当前采集时间、CPU个数、CPU使用率、内存总量、内存利用率、内存已用空间、内存可用空间、磁盘总量、磁盘利用率、磁盘已用空间、磁盘可用空间。整个功能实现过程完全自动化，免除了人工手动收集数据、汇总整理、发送的繁琐过程，充分提高了任务完成效率和数据可靠性。</br>
 </br>
 
 * Python3 实现 linux 终端界面发信息到微信</br>
