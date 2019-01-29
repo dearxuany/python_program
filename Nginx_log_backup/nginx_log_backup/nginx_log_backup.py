@@ -16,15 +16,19 @@ def nginx_logs_backup():
     nginx_pid = os.popen('cat '+ nginx_pid_path).read()[:-1]   # 获取 nginx 当前 pid
 
     date = time.strftime("%Y%m%d", time.localtime()) # 获取当前日期
+    backup_time = time.strftime("%H%M%S", time.localtime()) # 获取当前时间
 
-    os.system('mkdir '+nginx_logs_backup_path+'/'+date+'_backup_logs') # 生成当天日志备份目录
+
+    # 判断当日备份目录是否存在
+    if (os.path.exists(nginx_logs_backup_path+'/'+date+'_backup_logs')) == False : 
+        os.system('mkdir '+nginx_logs_backup_path+'/'+date+'_backup_logs') # 生成当天日志备份目录
 
     os.system('kill -TERM '+ nginx_pid) # 关闭 nginx
 
     for n in range(len(nginx_logs_filename)):
         logs_filename_path = nginx_log_path + '/' + nginx_logs_filename[n]
         # 移动log文件并在日志名前添加当前日期
-        os.system('mv '+logs_filename_path +' '+nginx_logs_backup_path+'/'+date+'_backup_logs/'+date+'_'+nginx_logs_filename[n])
+        os.system('mv '+logs_filename_path +' '+nginx_logs_backup_path+'/'+date+'_backup_logs/'+date+'_'+backup_time+'_'+nginx_logs_filename[n])
 
     os.system(nginx_path+'/sbin/nginx') # 重启 nginx
 
