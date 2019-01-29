@@ -36,3 +36,39 @@ requirements.txt 标有本项目的外部 Python 包列表，README.md 为项目
 * 程序每执行一次就是一次对 nginx 日志的分片，日志文件被移走备份后，nginx 在重启的过程中会自动生成新的日志文件在其指定使用的 logs 目录中；</br>
 * 此时间点以后的连接、错误数据会被记录在这些新log中，直到下一次分片备份。</br>
 
+## 项目软件环境及使用说明
+### 软件环境
+项目软件环境：linux 和 python3</br>
+其中 linux 涉及定时任务 crontab，python3 涉及到包管理工具 pip3</br>
+### 使用方法
+下载本项目到任意目录后，根据实际nginx的设置情况，修改 nginx_log_backup.py 内容。
+```
+ # 根据实际路径修改变量内容
+    nginx_path = '/usr/local/webserver/nginx' # nginx 目录绝对路径
+    nginx_log_path = nginx_path + '/logs' # nginx 的日志存储路径
+    nginx_logs_filename = ['access.log','host.access.log','nginx_error.log',\
+                           'error.log','monitor.access.log']  # 要备份的 log 文件名
+    nginx_logs_backup_path = '/usr/local/webserver/nginx/backuplogs'  # 备份文件目的路径
+```
+修改好后保存，设置 linux 定时任务，让脚本定时自动执行。</br>
+由于分片和备份 nginx log 文件需要 root 权限，但过程中又不能手动执行 sudo 和输入密码，所以定时任务需要挂在 root 名下。</br>
+```
+$ pwd
+/home/sunnylinux/useful_script/python3_script/nginx_log_backup
+$ whereis python3
+python3: /usr/bin/python3 /usr/local/python3
+$ sudo crontab -e
+[sudo] sunnylinux 的密码：
+no crontab for root - using an empty one
+crontab: installing new crontab
+```
+crontab 文件中添加以下一句，表示每天凌晨两点自动以 root 权限执行日志分片备份脚本
+```
+00 2 * * * /usr/local/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
+```
+查看是否已设置好crontab
+```
+$ sudo crontab -l
+00 2 * * * /usr/local/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
+```
+注意：设置 crontab 必须要 sudo，这样才能在自启过程中使用root权限，不sudo会设置在一般用户名下
