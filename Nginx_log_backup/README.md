@@ -62,17 +62,49 @@ $ sudo crontab -e
 no crontab for root - using an empty one
 crontab: installing new crontab
 ```
-crontab 文件中添加以下一句，表示每天凌晨两点自动以 root 权限执行日志分片备份脚本
+crontab 文件中添加以下一句，表示每天凌晨两点三十五自动以 root 权限执行日志分片备份脚本
 ```
-00 2 * * * /usr/local/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
+35 02 * * * /usr/bin/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
 ```
 查看是否已设置好crontab
 ```
 $ sudo crontab -l
-00 2 * * * /usr/local/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
+35 02 * * * /usr/bin/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
 ```
 注意：设置 crontab 必须要 sudo，这样才能在自启过程中使用root权限，不sudo会设置在一般用户名下
 ```
 $ sudo tail -f /var/log/cron
-Jan 30 02:00:01 centOSlearning CROND[5535]: (root) CMD (/usr/local/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py )
+Jan 30 02:35:01 centOSlearning CROND[5896]: (root) CMD (/usr/bin/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py )
+```
+可以看到定时任务已经成功执行，查看一下备份文件目录
+```
+$ pwd
+/usr/local/webserver/nginx/backuplogs
+$ ls
+20190129_backup_logs  20190130_backup_logs
+$ cd ./20190130_backup_logs/
+$ ls
+20190130_022048_access.log       20190130_022048_monitor.access.log  20190130_023501_host.access.log
+20190130_022048_error.log        20190130_023501_access.log          20190130_023501_monitor.access.log
+20190130_022048_host.access.log  20190130_023501_error.log
+```
+20190130_023501_monitor.access.log 看到这个编号的备份文件，则脚本自动定时执行成功。</br>
+其余编号开头为当天手动执行脚本所产生的分片备份log文件。</br>
+```
+$ cat 20190130_022048_monitor.access.log
+192.168.137.1 - - [30/Jan/2019:01:43:47 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:01:43:51 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:01:43:51 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:01:43:51 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:01:43:52 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:02:19:45 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:02:19:45 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:02:19:46 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:02:19:46 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:02:19:46 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+192.168.137.1 - - [30/Jan/2019:02:19:48 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
+
+
+$ cat 20190130_023501_monitor.access.log
+192.168.137.1 - - [30/Jan/2019:02:28:45 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "-"
 ```
