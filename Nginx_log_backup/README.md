@@ -41,14 +41,15 @@ requirements.txt 标有本项目的外部 Python 包列表，README.md 为项目
 项目软件环境：linux 和 python3</br>
 其中 linux 涉及定时任务 crontab，python3 涉及到包管理工具 pip3</br>
 ### 使用方法
-下载本项目到任意目录后，根据实际nginx的设置情况，修改 nginx_log_backup.py 内容。
+下载本项目到任意目录后，根据实际nginx的 nginx.conf 配置文件的设置情况，修改 nginx_log_backup.py 内容。
 ```
  # 根据实际路径修改变量内容
     nginx_path = '/usr/local/webserver/nginx' # nginx 目录绝对路径
     nginx_log_path = nginx_path + '/logs' # nginx 的日志存储路径
-    nginx_logs_filename = ['access.log','host.access.log','nginx_error.log',\
+    nginx_logs_filename = ['access.log','host.access.log',\
                            'error.log','monitor.access.log']  # 要备份的 log 文件名
     nginx_logs_backup_path = '/usr/local/webserver/nginx/backuplogs'  # 备份文件目的路径
+    nginx_pid_path = nginx_log_path +'/' +'nginx.pid'  # Nginx.pid 文件的路径
 ```
 修改好后保存，设置 linux 定时任务，让脚本定时自动执行。</br>
 由于分片和备份 nginx log 文件需要 root 权限，但过程中又不能手动执行 sudo 和输入密码，所以定时任务需要挂在 root 名下。</br>
