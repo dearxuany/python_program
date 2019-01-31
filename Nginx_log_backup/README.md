@@ -111,3 +111,7 @@ $ cat 20190130_023501_monitor.access.log
 ```
 注意：</br>
 其实最好把脚本执行时间设置为每晚的23:59分，这样日志分割出来每份都包含当天完整的日志数据，比较容易做后续的统计分析。
+```
+# 修改 crontab 定时时间为每晚的23:59分
+59 23 * * * /usr/bin/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
+```
