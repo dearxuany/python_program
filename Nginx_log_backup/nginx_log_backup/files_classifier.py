@@ -75,8 +75,8 @@ def file_classfly(dirpath,classflypath,dirname):
 
 if __name__ == '__main__':
       
-    dir_path = '/home/sunnylinux/pythontest/python3_script/mk_file_test_mounth'  # 要分类的文件所在目录路径
-    classfly_path = '/home/sunnylinux/pythontest/python3_script/backuplog_classfly_mounth'  # 文件分类目的目录路径
+    dir_path = '/usr/local/webserver/nginx/backuplogs'  # 要分类的文件所在目录路径
+    classfly_path = '/usr/local/webserver/nginx/classfly_backuplogs'  # 文件分类目的目录路径
     dir_name = '_backup_logs'  # 除日期以外部分的分类目录名称
     
     file_classfly(dir_path,classfly_path,dir_name)  # 程序入口
