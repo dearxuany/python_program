@@ -40,7 +40,7 @@ requirements.txt 标有本项目的外部 Python 包列表，README.md 为项目
 ### 软件环境
 项目软件环境：linux 和 python3</br>
 其中 linux 涉及定时任务 crontab，python3 涉及到包管理工具 pip3</br>
-### Nginx 日志分割备份模块使用方法
+### Nginx 日志分割备份模块 nginx_log_backup.py 使用方法 
 下载本项目到任意目录后，根据实际nginx的 nginx.conf 配置文件的设置情况，修改 nginx_log_backup.py 内容。
 ```
  # 根据实际路径修改变量内容
@@ -115,7 +115,11 @@ $ cat 20190130_023501_monitor.access.log
 # 修改 crontab 定时时间为每晚的23:59分
 59 23 * * * /usr/bin/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
 ```
-### 目录文件日期分类模块使用方法
+### 目录文件日期分类模块 files_classifier.py 使用方法
+前面介绍的 Nginx 日志分割备份模块永久了之后可能会产生一个问题，就是备份目录中塞满了以日为单位分类的备份日志目录。
+这样不利用数据的整理收集，所以需要一个可以自动将这些目录按年或月份分类整理的程序，本项目的 files_classifier.py 便实现了这一功能。</br>
+![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Linux_note_images/nginxlogs.png)
+files_classifier.py 可以将上图这样的目录结构自动分类成下图这样的目录结构，让数据分类整理查找更加简单。
 ```
 $ cd ./classfly_backuplogs/
 [sunnylinux@centOSlearning classfly_backuplogs]$ tree
