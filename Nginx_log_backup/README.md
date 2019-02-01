@@ -116,7 +116,7 @@ $ cat 20190130_023501_monitor.access.log
 59 23 * * * /usr/bin/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
 ```
 ### 目录文件日期分类模块 files_classifier.py 使用方法
-前面介绍的 Nginx 日志分割备份模块用久了之后可能会产生一个问题：如果长期不对该备份目录做处理，目录中会塞满以日为单位分类的备份日志目录，各种年份和月份的日志备份目录混在一起。这样非常不利于数据的整理收集而且手动分类效率非常低，所以需要一个可以自动将这些目录按年或月份分类整理的程序，本项目的 files_classifier.py 便实现了这一功能。</br>
+前面介绍的 Nginx 日志分割备份模块用久了之后可能会产生一个问题：如果长期不对该备份目录做处理，目录中会塞满以日为单位分类的备份日志目录，各种年份和月份的日志备份目录混在一起。这样非常不利于数据的整理收集而且手动分类效率非常低，所以需要一个可以自动将这些目录按年或月份分类整理的程序，本项目的 files_classifier.py 便实现了这一功能。</br> files_classifier.py 基本上能对任何以"YYmmdd"开头的文件或目录进行分类整理。</br>
 ![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Linux_note_images/nginxlogs.png)
 files_classifier.py 可以将上图这样的目录结构自动分类成下图这样的目录结构，让数据分类整理查找更加简单。
 ```
@@ -156,4 +156,43 @@ $ cd ./classfly_backuplogs/
             └── 20190202_021657_monitor.access.log
 
 7 directories, 24 files
+```
+files_classifier.py 提供按年分类和按月分类两种分类方法，可按照以下步骤设置：
+```
+# 修改函数 file_classfly(dirpath,classflypath,dirname)下的部分，不需要的模式注释掉即可
+$ vim files_classifier.py
+
+    # 按月分类
+    year_dir_exists_test(year_mounth_dict)
+    mounth_dir_exists_test(year_mounth_dict)
+    move_files_mounth(dir_file_list)
+
+    # 按年分类
+    # year_dir_exists_test(year_mounth_dict)
+    # move_files_year(dir_file_list)
+
+```
+#### 脚本模式
+files_classifier.py 用法比较简单，只需要对分类目标文件所在目录、分类后的目的目录、分类后的目录名设置，便可使用。
+```
+$ vim files_classifier.py
+
+# 作为脚本使用，修改以下部分
+if __name__ == '__main__':
+    dir_path = '/usr/local/webserver/nginx/backuplogs'  # 要分类的文件所在目录路径，此处设置的是 nginx_log_backup.py 指定的备份目录
+    classfly_path = '/usr/local/webserver/nginx/classfly_backuplogs'  # 文件分类目的目录路径
+    dir_name = '_backup_logs'  # 除日期以外部分的分类目录名称
+```
+在任意路径执行本脚本即可，也可配合 linux 的 crontab 定时任务来以一定时间间隔来让系统自动对备份目录进行分类
+```
+$ python3 files_classifier.py
+```
+#### 作为模块导入到 python 解释器使用
+在 files_classifier.py 所在目录中启动 python 解释器并导入模块，设置分类目标文件所在目录、分类后的目的目录、分类后的目录名
+```
+>>> import files_classifier
+>>> dir_path = '/home/sunnylinux/pythontest/python3_script/mk_file_test_mounth'
+>>> classfly_path = '/home/sunnylinux/pythontest/python3_script/backuplog_classfly_mounth'
+>>> dir_name = '_backup_logs'
+>>> files_classifier.file_classfly(dir_path,classfly_path,dir_name) # 分类程序入口
 ```
