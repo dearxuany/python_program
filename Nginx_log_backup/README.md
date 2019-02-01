@@ -40,7 +40,7 @@ requirements.txt 标有本项目的外部 Python 包列表，README.md 为项目
 ### 软件环境
 项目软件环境：linux 和 python3</br>
 其中 linux 涉及定时任务 crontab，python3 涉及到包管理工具 pip3</br>
-### 使用方法
+### Nginx 日志分割备份模块使用方法
 下载本项目到任意目录后，根据实际nginx的 nginx.conf 配置文件的设置情况，修改 nginx_log_backup.py 内容。
 ```
  # 根据实际路径修改变量内容
@@ -114,4 +114,43 @@ $ cat 20190130_023501_monitor.access.log
 ```
 # 修改 crontab 定时时间为每晚的23:59分
 59 23 * * * /usr/bin/python3 /home/sunnylinux/useful_script/python3_script/nginx_log_backup/nginx_log_backup.py
+```
+### 目录文件日期分类模块使用方法
+```
+$ cd ./classfly_backuplogs/
+[sunnylinux@centOSlearning classfly_backuplogs]$ tree
+.
+└── 2019_backup_logs
+    ├── 201901_backup_logs
+    │   ├── 20190129_backup_logs
+    │   │   ├── 20190129_201940_access.log
+    │   │   ├── 20190129_201940_error.log
+    │   │   ├── 20190129_201940_host.access.log
+    │   │   ├── 20190129_201940_monitor.access.log
+    │   │   ├── 20190129_202242_access.log
+    │   │   ├── 20190129_202242_error.log
+    │   │   ├── 20190129_202242_host.access.log
+    │   │   └── 20190129_202242_monitor.access.log
+    │   ├── 20190130_backup_logs
+    │   │   ├── 20190130_022048_access.log
+    │   │   ├── 20190130_022048_error.log
+    │   │   ├── 20190130_022048_host.access.log
+    │   │   ├── 20190130_022048_monitor.access.log
+    │   │   ├── 20190130_023501_access.log
+    │   │   ├── 20190130_023501_error.log
+    │   │   ├── 20190130_023501_host.access.log
+    │   │   └── 20190130_023501_monitor.access.log
+    │   └── 20190131_backup_logs
+    │       ├── 20190131_023501_access.log
+    │       ├── 20190131_023501_error.log
+    │       ├── 20190131_023501_host.access.log
+    │       └── 20190131_023501_monitor.access.log
+    └── 201902_backup_logs
+        └── 20190202_backup_logs
+            ├── 20190202_021657_access.log
+            ├── 20190202_021657_error.log
+            ├── 20190202_021657_host.access.log
+            └── 20190202_021657_monitor.access.log
+
+7 directories, 24 files
 ```
