@@ -31,7 +31,7 @@ Nginx_log_backup
 目录 ./nginx_log_backup 存放本项目的主要代码，本项目最主要的代码是那个 nginx_log_backup.py 的nginx日志分割备份的 script，files_classifier.py 是一个日期分类脚本，tar_gzip.py 是一个批量打包脚本。
 requirements.txt 标有本项目的外部 Python 包列表，README.md 为项目使用说明。</br>
 ### nginx_log_backup.py 
-nginx_log_backup.py 的是本项目的 nginx 日志备份模块，是本项目最主要的功能模块，使用 Python3 的 os、time 模块配合 linux 的 rontab 定时任务实现 nginx 的日志分割备份功能。</br>
+nginx_log_backup.py 的是本项目的 nginx 日志备份模块，是本项目最主要的功能模块，使用 Python3 的 os、time 模块配合 linux 的 crontab 定时任务实现 nginx 的日志自动定时分割备份功能，也可直接作为脚本手动执行以应对特殊状况下的应急分割备份。</br>
 
 程序会自动检测备份目录中是否已存在当天对应的备份目录：</br>
 * 如果该备份目录中没有当天的日志备份目录，则自动生成一个包含当天日期信息的目录，命名格式为“YYmmdd_backup_logs”；</br>
