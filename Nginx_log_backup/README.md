@@ -221,7 +221,7 @@ def tar_gzip(startpath):
 
 
 if __name__ == '__main__':
-    start_path = '/home/sunnylinux/pythontest/python3_script/backuplog_classfly'  # 启动目录路径
+    start_path = '/usr/local/webserver/nginx/classfly_backuplogs'  # 启动目录路径
 
     tar_gzip(start_path)
 ```
