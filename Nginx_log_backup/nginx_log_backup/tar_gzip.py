@@ -30,7 +30,7 @@ def tar_gzip(startpath):
     # 打包当前目录中的内容
     tar_first_dir(dir_list)
     
-    # 打包当前目录中的目录的内容
+    # 打包当前目录的下一级目录中的内容
     # tar_second_dir(dir_list)
     
 
