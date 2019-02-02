@@ -207,7 +207,8 @@ $ python3 files_classifier.py
 >>> files_classifier.file_classfly(dir_path,classfly_path,dir_name) # 分类程序入口
 ```
 ### 批量打包模块 tar_gzip.py 使用方法
-修改模块以下内容，tar_gzip(startpath)可选择压缩的模式：tar_first_dir(dir_list)批量压缩启动目录中的内容、tar_second_dir(dir_list)批量压缩启动目录中所有目录中的内容，要注意两者的区别，不使用的模式注释掉即可。使用前需要修改启动目录的路径，注意启动目录的位置，不然可能压缩错目标文件，需重新操作。在 nginx 分割备份的场景中，启动目录可填 nginx 的备份目录，根据需求直接按日压缩或者经过 files_classifier.py 分类后再进行按月压缩或按年压缩。注意，压缩文件会被放置在原路径且源文件不会被删除。
+修改模块以下内容，tar_gzip(startpath)可选择压缩的模式：tar_first_dir(dir_list)批量压缩启动目录中的内容、tar_second_dir(dir_list)批量压缩启动目录中所有目录中的内容，要注意两者的区别，不使用的模式注释掉即可。使用前需要修改启动目录的路径，注意启动目录的位置，不然可能压缩错目标文件，需重新操作。注意，压缩文件会被放置在原路径且源文件不会被删除。</br>
+在 nginx 分割备份的场景中，启动目录可填 nginx 的备份目录，根据需求直接按日压缩或者经过 files_classifier.py 分类后再进行按月压缩或按年压缩。
 ```
 def tar_gzip(startpath):
     start_path = startpath
