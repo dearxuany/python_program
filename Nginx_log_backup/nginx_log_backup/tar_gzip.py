@@ -5,8 +5,8 @@ import os
 # 打包当前目录中的内容
 def tar_first_dir(dir_list):
     for n in range(len(dir_list)):
-        goal_dir_path = start_path +'/'+ dir_list[n]
-        os.system('tar -czf '+goal_dir_path+'.tar.gz '+goal_dir_path)
+        tar_filename = tar_path+'/'+ dir_list[n]
+        os.system('tar -czf {}.tar.gz -C{} {}'.format(tar_filename,start_path,dir_list[n]))
 
 # 打包当前目录中的目录的下一层目录
 def tar_second_dir(dir_list):
@@ -16,25 +16,35 @@ def tar_second_dir(dir_list):
         second_dir_path = start_path+'/'+ dir_list[n]
         second_dir_list = os.listdir(second_dir_path)
         second_dirlist_dict[dir_list[n]].extend(second_dir_list)
+    print(second_dirlist_dict)
 
     for key,value in second_dirlist_dict.items():
+        if os.path.exists(tar_path+'/'+key) == False :
+            os.system('mkdir '+tar_path+'/'+key)
         for n in range(len(value)):
-            goal_dir_path = start_path + '/' + key + '/'+ value[n]
-            os.system('tar -czf '+goal_dir_path+'.tar.gz '+goal_dir_path) 
+            tar_filename = tar_path + '/' + key + '/'+ value[n]
+            os.system('tar -czf {}.tar.gz -C{} {}'.format(tar_filename,start_path+'/'+key,value[n]))
 
 
-def tar_gzip(startpath):
+
+def tar_gzip(startpath,tarpath):
+    global start_path
+    global tar_path
+
     start_path = startpath
+    tar_path = tarpath
+
     dir_list = os.listdir(start_path)
 
-    # 打包当前目录中的内容
-    tar_first_dir(dir_list)
+    # 打包压缩指定目录中的内容
+    # tar_first_dir(dir_list)
     
-    # 打包当前目录的下一级目录中的内容
-    # tar_second_dir(dir_list)
+    # 分别打包压缩指定目录中所有子目录中的内容
+    tar_second_dir(dir_list)
     
 
 if __name__ == '__main__':
-    start_path = '/usr/local/webserver/nginx/classfly_backuplogs'
+    start_path = '/home/sunnylinux/pythontest/python3_script/backuplog_classfly_mounth'
+    tar_path = '/home/sunnylinux/pythontest/python3_script/tar_logs_mounth'
     
-    tar_gzip(start_path)
+    tar_gzip(start_path,tar_path)
