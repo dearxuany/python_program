@@ -16,7 +16,7 @@ def tar_second_dir(dir_list):
         second_dir_path = start_path+'/'+ dir_list[n]
         second_dir_list = os.listdir(second_dir_path)
         second_dirlist_dict[dir_list[n]].extend(second_dir_list)
-    print(second_dirlist_dict)
+    
 
     for key,value in second_dirlist_dict.items():
         if os.path.exists(tar_path+'/'+key) == False :
