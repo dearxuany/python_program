@@ -44,7 +44,7 @@ def tar_gzip(startpath,tarpath):
     
 
 if __name__ == '__main__':
-    start_path = '/home/sunnylinux/pythontest/python3_script/backuplog_classfly_mounth'
-    tar_path = '/home/sunnylinux/pythontest/python3_script/tar_logs_mounth'
+    start_path = '/home/sunnylinux/pythontest/python3_script/backuplog_classfly_mounth'  # 要打包压缩目录所在的目录路径
+    tar_path = '/home/sunnylinux/pythontest/python3_script/tar_logs_mounth'  # 打包压缩文件要存放的目录路径
     
     tar_gzip(start_path,tar_path)
