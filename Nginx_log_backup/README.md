@@ -207,24 +207,33 @@ $ python3 files_classifier.py
 >>> files_classifier.file_classfly(dir_path,classfly_path,dir_name) # 分类程序入口
 ```
 ### 批量打包模块 tar_gzip.py 使用方法
-修改模块以下内容，tar_gzip(startpath)可选择压缩的模式：tar_first_dir(dir_list)批量压缩启动目录中的内容、tar_second_dir(dir_list)批量压缩启动目录中所有目录中的内容，要注意两者的区别，不使用的模式注释掉即可。使用前需要修改启动目录的路径，注意启动目录的位置，不然可能压缩错目标文件，需重新操作。注意，压缩文件会被放置在原路径且源文件不会被删除。</br>
+tar_gzip(start_path,tar_path)可选择压缩的模式：tar_first_dir(dir_list)批量压缩启动目录中的内容、tar_second_dir(dir_list)批量压缩启动目录中所有目录中的内容，要注意两者的区别，不使用的模式注释掉即可；</br>
+修改启动目录的路径，注意启动目录的位置，不然可能压缩错目标文件，需重新操作；</br>
+修改压缩文件的存放路径，注意压缩文件中不会包含源文件所在的目录信息。</br>
+注意：压缩文件会被放在指定的目标目录中且原目录中的源文件不会被删除。</br>
 在 nginx 分割备份的场景中，启动目录可填 nginx 的备份目录，根据需求直接按日压缩或者经过 files_classifier.py 分类后再进行按月压缩或按年压缩。
 ```
-def tar_gzip(startpath):
+def tar_gzip(startpath,tarpath):
+    global start_path
+    global tar_path
+
     start_path = startpath
+    tar_path = tarpath
+
     dir_list = os.listdir(start_path)
 
-    # 打包当前目录中的内容
-    tar_first_dir(dir_list)
-
-    # 打包当前目录中的目录的内容
-    # tar_second_dir(dir_list)
-
+    # 打包压缩指定目录中的内容
+    # tar_first_dir(dir_list)
+    
+    # 分别打包压缩指定目录中所有子目录中的内容
+    tar_second_dir(dir_list)
+    
 
 if __name__ == '__main__':
-    start_path = '/usr/local/webserver/nginx/classfly_backuplogs'  # 启动目录路径
-
-    tar_gzip(start_path)
+    start_path = '/home/sunnylinux/pythontest/python3_script/backuplog_classfly_mounth'  # 要打包压缩目录所在的目录路径
+    tar_path = '/home/sunnylinux/pythontest/python3_script/tar_logs_mounth'  # 打包压缩文件要存放的目录路径，填start_path会放置在源目录
+    
+    tar_gzip(start_path,tar_path)
 ```
 按年压缩效果，使用年分类及 tar_first_dir(dir_list) 模式
 ```
