@@ -256,3 +256,13 @@ if __name__ == '__main__':
 201804_backup_logs         201808_backup_logs         201812_backup_logs
 201804_backup_logs.tar.gz  201808_backup_logs.tar.gz  201812_backup_logs.tar.gz
 ```
+作为模块在python3解释器中使用
+```
+# 打包压缩当前文件夹中的所有文件并放置在原路径
+$ python3
+Python 3.7.0a1 (default, May 18 2018, 14:10:18)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> tar_gzip('./','./')
+>>>
+```
