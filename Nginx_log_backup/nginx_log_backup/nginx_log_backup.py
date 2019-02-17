@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+# 项目描述：nginx 日志分片备份模块
 
 import os
 import time
