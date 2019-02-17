@@ -127,8 +127,8 @@ $ cat 20190130_023501_monitor.access.log
 ```
 ### 目录文件日期分类模块 files_classifier.py 使用方法
 前面介绍的 Nginx 日志分割备份模块用久了之后可能会产生一个问题：如果长期不对该备份目录做处理，目录中会塞满以日为单位分类的备份日志目录，各种年份和月份的日志备份目录混在一起。这样非常不利于数据的整理收集而且手动分类效率非常低，所以需要一个可以自动将这些目录按年或月份分类整理的程序，本项目的 files_classifier.py 便实现了这一功能。</br> files_classifier.py 基本上能对任何以"YYmmdd"开头的文件或目录进行分类整理。</br>
-![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Linux_note_images/nginxlogs.png)
-files_classifier.py 可以将上图这样的目录结构自动分类成下图这样的目录结构，让数据分类整理查找更加简单。
+![](https://github.com/dearxuany/Sharon_Technology_learning_note/blob/master/note_images/Linux_note_images/nginxlogsort.png)
+files_classifier.py 可以将上图这种多年日期log混杂在一起的目录结构自动分类成下图这样的目录结构，让数据分类整理查找更加简单。
 ```
 $ cd ./classfly_backuplogs/
 [sunnylinux@centOSlearning classfly_backuplogs]$ tree
