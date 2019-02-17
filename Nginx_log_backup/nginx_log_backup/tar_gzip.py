@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+# 项目描述：目录批量压缩模块
 
 import os
 
