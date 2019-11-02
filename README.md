@@ -3,6 +3,10 @@
 https://github.com/dearxuany/python_program/tree/master/git_commit_analysis </br>
 用于统计公司所有业务系统每周 git 代码变更状况，内容包括： 日期、项目名称、成员名称、commit次数、新增行数、删除行数、变更行数。每周在本周版本上线后，获取各项目 master 分支提交信息，结果以 json 格式输出到 logstach 进行分词，elasticsearch 作数据存储，使用 kibana 分析展示。</br>
 
+* Python3 生成 jvm 内存分析 javadump 文件并定时使用 scp 回传本地服务器</br>
+https://github.com/dearxuany/python_program/tree/master/jvm_memory_javadump
+使用 jmap 生成 java 进程 javadump 二进制文件，用于分析 java 系统的 jvm 内存使用状况。一般情况下，生成的 javadump 二进制文件较大且不易切割解析，故需压缩发送。压缩完毕后，压缩文件依然会有 1GB 以上大小，从阿里云生产网络传输回本地内网需占用生产带宽，故须在深夜用户量较少时传输。执行过程：获取 java 进程当前 pid 及用户 - 根据当前时间使用 jmap 生产 javadump文件 - 压缩 - 生成 scp 回传脚本 - 设置 crontab 为第二天早上 5:30 回传 javadump 文件到本地服务器。
+
 * Python3 实现定时监控 linux 系统性能并发送邮件通知</br>
 https://github.com/dearxuany/python_program/tree/master/Linux_monitor_send_email </br>
 本项目主要使用 Python3 的三个开源模块 psutil、jinja2、yagmail 并配合 linux 系统自带的 crontab 定时任务，来实现对 linux 系统性能数据的定时采集、数据格式调整、自动发送到指定邮箱的功能，采集内容包括：开机时间，当前主机名、当前采集时间、CPU个数、CPU使用率、内存总量、内存利用率、内存已用空间、内存可用空间、磁盘总量、磁盘利用率、磁盘已用空间、磁盘可用空间。整个功能实现过程完全自动化，免除了人工手动收集数据、汇总整理、发送的繁琐过程，充分提高了任务完成效率和数据可靠性。</br>
