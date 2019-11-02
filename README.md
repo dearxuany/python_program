@@ -1,8 +1,7 @@
 # python_program
 * P业务系统 git 提交分析工具
 https://github.com/dearxuany/python_program/tree/master/git_commit_analysis </br>
-用于统计公司所有业务系统每周 git 代码变更状况，内容包括： 日期、项目名称、成员名称、commit次数、新增行数、删除行数、变更行数。</br>
-每周在本周版本上线后，获取各项目 master 分支提交信息，结果以 json 格式输出到 elasticsearch 作数据存储，使用 kibana 分析展示。</br>
+用于统计公司所有业务系统每周 git 代码变更状况，内容包括： 日期、项目名称、成员名称、commit次数、新增行数、删除行数、变更行数。每周在本周版本上线后，获取各项目 master 分支提交信息，结果以 json 格式输出到 elasticsearch 作数据存储，使用 kibana 分析展示。</br>
 
 * Python3 实现定时监控 linux 系统性能并发送邮件通知</br>
 https://github.com/dearxuany/python_program/tree/master/Linux_monitor_send_email </br>
