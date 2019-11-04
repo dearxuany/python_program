@@ -8,7 +8,7 @@ from json import dumps
 def set_es_user(username,userInfo):
     userInfoJson=dumps(userInfo,ensure_ascii=False)
     print(username)
-    setUserCMD='curl --user elastic:yourpassword -H "Content-Type: application/json" -XPUT http://10.0.0.153:19200/_security/user/{} -d \'{}\''.format(username,userInfoJson)
+    setUserCMD='curl --user elastic:yourpassword -H "Content-Type: application/json" -XPUT http://10.0.0.153:9200/_security/user/{} -d \'{}\''.format(username,userInfoJson)
     result=os.popen(setUserCMD).read()
     print(result)
     return
