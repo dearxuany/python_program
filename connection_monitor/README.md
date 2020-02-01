@@ -15,7 +15,7 @@ virtualenv -p python3 .connection_monitor_venv
 
 ## 代码仓库克隆
 ```
-git clone git@git.woniubaoxian.com:ops-code/connection_monitor.git
+git clone git@git.*****.com:****/connection_monitor.git
 ```
 
 ## 激活虚拟环境
@@ -52,7 +52,7 @@ python3 -m virtualenv .connection_monitor_venv
 ### crontab 激活虚拟环境执行程序
 在虚拟环境激活的状态下查找 python3 路径
 ```
-(.connection_monitor_venv) [snail@alihn1-opd-jenkins-01 connection_monitor]$ which python3
+(.connection_monitor_venv) $ which python3
 /sdata/app/pythonVenv/.connection_monitor_venv/bin/python3
 ```
 使用以上绝对路径设置定时任务
