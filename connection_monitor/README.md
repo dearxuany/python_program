@@ -1,6 +1,44 @@
 # Connection_monitor
-
 业务系统连接状态监控告警
+## 功能
+* 域名可用性检测、域名解析正确性检测、dns 可用性检测、url 响应速度性能检测、内外网联通性检测。
+* 单次请求结果输出 json 格式，后期接入 elk 做可视化解析，请求失败原因输出到日志文件，方便问题排查。
+* 部署位置：阿里云及办公网 ansible 主机各一个
+### 检测逻辑
+TCP 请求建立连接 ConnectTimeout 3 秒，响应readTimeout 5 秒，单次请求建立连接尝试 3 次，如果 3 尝试都失败那判断这次请求失败，各项输出为 none。
+```
+{
+	"timestamp": "2019-12-24 06:52:51.917570",
+	"localhostName": "opd-sharonli-01",
+	"localhostIP": "192.168.126.129",
+	"hostIP": "14.215.177.39",
+	"dnsServerList": ["10.0.0.51", "10.0.0.52"],
+	"url": "https://www.baidu.com",
+	"statusCode": 200,
+	"requestTime": 0.052767,
+	"result": "success"
+}
+```
+如果请求成功，即有状态码输出，则计算响应时间。</br>
+10 次请求算响应均值和标准差，请求成功率低于 0.7 告警，响应均值低于 5  秒告警。</br>
+```
+{
+	"timestamp": "2019-12-24 06:52:51.611699",
+	"url": "https://www.baidu.com",
+	"hostList": ["14.215.177.39", "14.215.177.38"],
+	"dnsServerList":["10.0.0.51", "10.0.0.52"],
+	"checkTimes": 10,
+	"checkDelta": 1,
+	"requestStatus": [200, 200, 200, 200, 200, 200, 200, 200, 200, 200],
+	"requestSpendTime": [0.036415, 0.033601, 0.052242, 0.056756, 0.045676, 0.029547, 0.042732, 0.030582, 0.053056, 0.063011],
+	"localhostName": "opd-sharonli-01",
+	"localhostIP": "192.168.126.129",
+	"requestSuccessPerc": 1.0,
+	"requestTimeMean": 0.044,
+	"requestTimeStd": 0.011,
+	"triggerStatus": "域名请求正常"
+}
+```
 
 ## 部署
 ### 环境配置
