@@ -54,8 +54,8 @@ pip3 install -r requirement.txt
 ```
 在虚拟环境激活的状态下查找 python3 路径
 ```
-(.gitanalysis_venv) [snail@alihn1-opd-jenkins-01 gitanalysis]$ which python3
-/sdata/app/pythonVenv/.gitanalysis_venv/bin/python3
+(.gitanalysis_venv) [snail@alihn1-opd-jenkins-01 gitanalysis]$ which python
+/sdata/app/pythonVenv/.gitanalysis_venv/bin/python
 ```
 使用以上绝对路径设置 crontab 定时任务
 ```
