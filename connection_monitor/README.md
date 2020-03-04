@@ -32,7 +32,7 @@ pip3 install -r requirement.txt
 ```
 # vim config/conf.ini 
 [public]
-# url导入目录
+# 监控项导入目录
 inputFileDir=/sdata/app/connection_monitor/docs
 # 结果导出目录
 resultsDir=/sdata/data/connection_monitor
