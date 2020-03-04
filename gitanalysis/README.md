@@ -1,7 +1,8 @@
 # gitanalysis
 gitlab 项目代码提交分析工具，用于统计公司所有业务系统每周 git 代码变更状况。</br>
 内容包括： 日期、项目名称、成员名称、commit次数、新增行数、删除行数、变更行数。</br>
-每周在本周版本上线后，获取各项目 master 分支提交信息，结果以 json 格式输出到 logstach 进行分词，elasticsearch 作数据存储，使用 kibana 分析展示。</br>
+每周在本周版本上线后，获取各项目 master 分支提交信息，结果以 json 格式输出到文本。</br>
+filebeat 作为 agent 读取 json 文本，logstach 进行分词，elasticsearch 作数据索引存储，使用 kibana 进行动态分析展示。</br>
 
 ## 依赖
 代码管理 git</br>
