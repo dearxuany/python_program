@@ -3,6 +3,10 @@
 https://github.com/dearxuany/python_program/tree/master/gitanalysis </br>
 用于统计公司所有业务系统每周 git 代码变更状况，内容包括： 日期、项目名称、成员名称、commit次数、新增行数、删除行数、变更行数。每周在本周版本上线后，获取各项目 master 分支提交信息，结果以 json 格式输出到 logstach 进行分词，elasticsearch 作数据存储，使用 kibana 分析展示。</br>
 
+* Python3 域名可用性监控</br>
+https://github.com/dearxuany/python_program/tree/master/connection_monitor
+域名可用性检测、域名解析正确性检测、dns 可用性检测、url 响应速度性能检测、内外网联通性检测。单次请求结果输出 json 格式，后期接入 elk 做可视化解析，请求失败原因输出到日志文件，方便问题排查。告警触发后调用钉钉机器人发送告警信息。
+
 * Python3 读取 excel 信息批量生成 elasticsearch Xpack 用户及角色权限 </br>
 https://github.com/dearxuany/python_program/tree/master/elasticsearch_user_migration </br>
 用户信息记录于 xls 的 excel 中，使用 xlrd 读取 excel 中的用户信息存于字典，调整为 elasticsearch 可读取的 json 格式，使用 curl 调用 es 的 /_security/user API 生成用户及角色权限。
